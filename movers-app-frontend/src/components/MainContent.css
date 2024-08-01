@@ -1,0 +1,30 @@
+.main-content {
+    width: 60%;
+    padding: 20px;
+    text-align: left;
+  }
+  
+  h1 {
+    font-size: 32px;
+    color: #333;
+  }
+  
+  p {
+    font-size: 25px;
+    color: #555;
+  }
+  
+  .services {
+    margin-top: 25px;
+  }
+  
+  .services h2 {
+    font-size: 25px;
+    color: #333;
+  }
+  
+  .services p {
+    font-size: 25px;
+    color: #555;
+  }
+  
