@@ -1,16 +1,22 @@
 import React from 'react';
-import './App.css';
-import Header from './components/Header';
-import MainContent from './components/MainContent';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Header from './components/Header'; // Assuming Header is defined in its own file
+import AppRoutes from './routes/Routes'; // Import the routes component
+import './App.css'; // Global styles
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <div className="content">
-        <MainContent />
+    <Router>
+      <div className="App">
+        <Header /> {/* Header included at the top of every page */}
+        <main>
+          <AppRoutes /> {/* Routes are now handled in a separate component */}
+        </main>
+        <footer>
+          <p>© 2024 Movers Solution Company</p>
+        </footer>
       </div>
-    </div>
+    </Router>
   );
 }
 
