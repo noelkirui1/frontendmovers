@@ -1,63 +1,67 @@
 .header {
-    background-color: #ff6600;
-    color: white;
-    padding: 0px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
- .company-name {
-    font-size: 30px;
-    font-weight:large;
-    color:#333333
+  width: 100%; /* Cover the entire width of the page */
+  background-color: #ff6600;
+  color: white;
+  padding: 5px 20px; /* Minimal padding for thin appearance */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box; /* Include padding in element's total width/height */
 }
-  
-  .logo {
-    font-size: 14px;
-    font-weight: bold;
-  }
-  
-  .search input {
-    padding: 5px;
-    border-radius: 3px;
-    border: none;
-  }
-  
-  .search button {
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  .nav-links {
-    display: flex;
-    gap: 15px; /* Space between the buttons */
-  }
-  
-  .login-btn, .signup-btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .login-btn {
-    background-color: #ffffff;
-    color: #ff6600;
-  }
-  
-  .login-btn:hover {
-    background-color: #e6e6e6;
-  }
-  
-  .signup-btn {
-    background-color: #333333;
-    color: white;
-  }
-  
-  .signup-btn:hover {
-    background-color: #4d4d4d;
-  }
-  
+
+.company-name {
+  font-size: 20px; /* Maintain a visible yet compact font size */
+  font-weight: bold;
+  color: #333333;
+  margin-left: 10px; /* Spacing between the logo and company name */
+}
+
+.logo {
+  height: 100px; /* Keep the logo height minimal */
+  width: auto; /* Maintain aspect ratio */
+}
+
+.search input {
+  padding: 5px;
+  border-radius: 3px;
+  border: none;
+}
+
+.search button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 100; /* Remove button padding */
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px; /* Space between the buttons */
+}
+
+.login-btn, .signup-btn {
+  padding: 5px 10px; /* Keep buttons compact */
+  border: none;
+  border-radius: 3px;
+  font-size: 14px; /* Smaller font size for compact design */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-btn {
+  background-color: #333333;
+  color: white;
+}
+
+.login-btn:hover {
+  background-color: #4d4d4d;
+}
+
+.signup-btn {
+  background-color: #333333;
+  color: white;
+}
+
+.signup-btn:hover {
+  background-color: #4d4d4d;
+}
