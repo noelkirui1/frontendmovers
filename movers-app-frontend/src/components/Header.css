@@ -1,6 +1,7 @@
 .header {
   width: 100%; /* Cover the entire width of the page */
   background-color: #ff6600;
+  position:sticky;
   color: white;
   padding: 5px 20px; /* Minimal padding for thin appearance */
   display: flex;
