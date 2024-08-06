@@ -13,6 +13,8 @@ function Home() {
   const handleSignUpMoverCompanyClick = () => {
     navigate('/SignUp'); // Navigate
   }
+
+function Home() {
   return (
     <div className="home-container">
       {/* Hero Section */}
@@ -23,6 +25,7 @@ function Home() {
           <p>Your reliable partner for a stress-free moving experience.</p>
           <button onClick={handleLoginMoverCompanyClick} className="cta-button">Login MoverCompany</button>
           <button onClick={handleSignUpMoverCompanyClick} className="cta-button">SignUp MoverCompany</button>
+          <button className="cta-button">Get a Free Quote</button>
         </div>
       </div>
 
@@ -65,6 +68,7 @@ function Home() {
         <h2>Ready to Move?</h2>
         <p>Contact us today to schedule your move or get a free quote!</p>
         <button className="cta-button">Contact Us 0785678989</button>
+        <button className="cta-button">Contact Us</button>
       </div>
     </div>
   );
