@@ -36,12 +36,14 @@ html, body {
 
 .App {
   min-height: 100vh;
+  width:100%;
   display: flex;
   flex-direction: column;
 }
 
 header {
   flex-shrink: 0;
+  position:sticky ;
 }
 
 main {

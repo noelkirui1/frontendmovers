@@ -1,6 +1,18 @@
 import React from 'react';
 import './Home.css';
 import image from '../images/image2.png';
+import {useNavigate} from 'react-router-dom';
+
+
+function Home() {
+  const navigate = useNavigate();
+
+  const handleLoginMoverCompanyClick = () => {
+    navigate('/Login'); // Navigate
+  }
+  const handleSignUpMoverCompanyClick = () => {
+    navigate('/SignUp'); // Navigate
+  }
 
 function Home() {
   return (
@@ -11,6 +23,8 @@ function Home() {
         <div className="hero-text">
           <h1>Welcome to Movers Solution Company</h1>
           <p>Your reliable partner for a stress-free moving experience.</p>
+          <button onClick={handleLoginMoverCompanyClick} className="cta-button">Login MoverCompany</button>
+          <button onClick={handleSignUpMoverCompanyClick} className="cta-button">SignUp MoverCompany</button>
           <button className="cta-button">Get a Free Quote</button>
         </div>
       </div>
@@ -53,6 +67,7 @@ function Home() {
       <div className="cta-section">
         <h2>Ready to Move?</h2>
         <p>Contact us today to schedule your move or get a free quote!</p>
+        <button className="cta-button">Contact Us 0785678989</button>
         <button className="cta-button">Contact Us</button>
       </div>
     </div>
