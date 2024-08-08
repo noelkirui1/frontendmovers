@@ -1,60 +1,50 @@
-import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import './Login.css';
-import './Home' ;
+// src/pages/Login.js
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 
-const Login = () => {
-  // Define validation schema with Yup
-  const validationSchema = Yup.object().shape({
-    email: Yup.string().email('Invalid email format').required('Email is required'),
-    password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
-  });
 
-  // Initial form values
-  const initialValues = {
-    email: '',
-    password: '',
-  };
 
-  // Form submission handler
-  const handleSubmit = (values, { setSubmitting }) => {
-    setSubmitting(true);
-    // Simulate an API call
-    setTimeout(() => {
-      alert(`Login attempt with: ${JSON.stringify(values, null, 2)}`);
-      setSubmitting(false);
-    }, 1000);
-  };
+function Login() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const { setUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
-  return (
-    <div className="login-container">
-      <h2>Login</h2>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        {({ isSubmitting }) => (
-          <Form className="login-form">
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <Field type="email" name="email" placeholder="Enter your email" />
-              <ErrorMessage name="email" component="div" className="error-message" />
-            </div>
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <Field type="password" name="password" placeholder="Enter your password" />
-              <ErrorMessage name="password" component="div" className="error-message" />
-            </div>
-            <button type="submit" disabled={isSubmitting} className="login-button">
-              {isSubmitting ? 'Logging in...' : 'Login'}
-            </button>
-          </Form>
-        )}
-      </Formik>
-    </div>
-  );
-};
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const response = await fetch('http://127.0.0.1:5555/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+        });
+        const data = await response.json();
+    if (response.ok) {
+      setUser(data);
+      navigate('/user_dashboard')
+        } else {
+            alert(data.message);
+        }
+    };
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <h2>Login</h2>
+            <input
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
+            />
+            <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+            />
+            <button type="submit">Login</button>
+        </form>
+    );
+}
 
 export default Login;
