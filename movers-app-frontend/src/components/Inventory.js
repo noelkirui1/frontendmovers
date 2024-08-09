@@ -9,7 +9,7 @@ const Inventory = () => {
 
   useEffect(() => {
     const fetchInventory = async () => {
-      const response = await fetch('/inventory');
+      const response = await fetch('http://127.0.0.1:5000/inventories');
       const data = await response.json();
       setInventoryItems(data);
     };
@@ -23,7 +23,7 @@ const Inventory = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch('/inventory', {
+    const response = await fetch('http://127.0.0.1:5000/inventories', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newItem)
@@ -34,7 +34,7 @@ const Inventory = () => {
   };
 
   const handleDelete = async (id) => {
-    const response = await fetch(`/inventory/${id}`, {
+    const response = await fetch(`http://127.0.0.1:5000/inventories/${id}`, {
       method: 'DELETE'
     });
     if (response.ok) {

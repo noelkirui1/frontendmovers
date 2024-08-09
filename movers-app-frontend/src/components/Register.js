@@ -1,8 +1,7 @@
-// components/Register.js
 import React, { useState, useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom';
-import './Register.css'
+import './Register.css';
 
 const Register = () => {
   const [formData, setFormData] = useState({ username: '', email: '', password: '', role: 'user' });
@@ -15,7 +14,7 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch('http://127.0.0.1:5555/signup', {
+    const response = await fetch('http://127.0.0.1:5000/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
@@ -23,7 +22,7 @@ const Register = () => {
     const data = await response.json();
     if (response.ok) {
       setUser(data);
-      navigate('/Login');
+      navigate('/Profile');
     } else {
       console.error('Registration failed:', data);
     }
@@ -52,6 +51,9 @@ const Register = () => {
         </select>
       </label>
       <button type="submit">Register</button>
+      <p className="sign-in-link">
+        Already have an account? <a href="/login">Sign in here</a>.
+      </p>
     </form>
   );
 };

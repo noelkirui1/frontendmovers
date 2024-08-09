@@ -10,17 +10,22 @@ const Navbar = () => {
 
   const handleLogout = () => {
     setUser({ id: null, username: '', email: '', role: '' });
-    navigate('/login');
+    navigate('/Home');
   };
 
   return (
     <nav>
       <Link to="/">Home</Link>
-      <Link to="/moves">Moves</Link>
-      {user.role === 'admin' && <Link to="/inventory">Inventory</Link>}
-      {(user.role === 'admin' || user.role === 'mover') && <Link to="/quotes">Quotes</Link>}
+      {user.role === 'user' }
+      {(user.role === 'user' || user.role === 'mover')  }
       {user.id ? (
+        <>
+        <Link to="/profile">Profile</Link>
+         <Link to="/inventory">Inventory</Link>
+         <Link to="/quotes">Quotes</Link>
+         <Link to="/moves">Moves</Link>
         <button onClick={handleLogout}>Logout</button>
+        </>
       ) : (
         <>
           <Link to="/login">Login</Link>
