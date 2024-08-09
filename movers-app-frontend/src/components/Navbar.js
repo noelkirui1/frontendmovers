@@ -17,8 +17,8 @@ const Navbar = () => {
     <nav>
       <Link to="/">Home</Link>
       <Link to="/moves">Moves</Link>
-      {user.role === 'admin' && <Link to="/inventory">Inventory</Link>}
-      {(user.role === 'admin' || user.role === 'mover') && <Link to="/quotes">Quotes</Link>}
+      {user.role === 'user' && <Link to="/inventory">Profile</Link>}
+      {(user.role === 'company' || user.role === 'mover') && <Link to="/quotes">Quotes</Link>}
       {user.id ? (
         <button onClick={handleLogout}>Logout</button>
       ) : (
