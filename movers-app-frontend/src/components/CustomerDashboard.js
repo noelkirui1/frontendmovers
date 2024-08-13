@@ -3,6 +3,7 @@ import { Route, Routes, Link, useNavigate } from 'react-router-dom';
 import InventoryForm from './InventoryForm';
 import InventoryList from './InventoryList';
 import BookingForm from './BookingForm';
+import './CustomerDashboard.css';
 
 const CustomerDashboard = () => {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const CustomerDashboard = () => {
           <li><Link to="inventory">View Inventory</Link></li>
           <li><Link to="add-inventory">Add Inventory</Link></li>
           <li><Link to="book-move">Book a Move</Link></li>
+          <button onClick={handleLogout}>Logout</button>
         </ul>
       </nav>
       <Routes>
@@ -28,7 +30,7 @@ const CustomerDashboard = () => {
         <Route path="add-inventory" element={<InventoryForm />} />
         <Route path="book-move" element={<BookingForm />} />
       </Routes>
-      <button onClick={handleLogout}>Logout</button>
+      
     </div>
   );
 };
