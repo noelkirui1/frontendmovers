@@ -77,3 +77,22 @@ const Quote = () => {
 };
 
 export default Quote;
+// import React from 'react';
+// import { useUser } from '../context/UserContext'; // Correct import
+
+// const Quote = () => {
+//   const { isAuthenticated } = useUser();
+
+//   if (!isAuthenticated) {
+//     return <p>You need to log in to view this page.</p>;
+//   }
+
+//   return (
+//     <div>
+//       <h1>Quote Page</h1>
+//       {/* Page content */}
+//     </div>
+//   );
+// };
+
+// export default Quote;

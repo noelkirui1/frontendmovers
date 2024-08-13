@@ -55,3 +55,30 @@ const Navbar = () => {
 };
 
 export default Navbar;
+// import React from 'react';
+// import { useUser } from '../context/UserContext'; // Correct import
+
+// const Navbar = () => {
+//   const { isAuthenticated, user } = useUser();
+
+//   return (
+//     <nav>
+//       <ul>
+//         <li><a href="/">Home</a></li>
+//         {isAuthenticated ? (
+//           <>
+//             <li><a href="/Customer">Dashboard</a></li>
+//             <li><a href="/logout">Logout</a></li>
+//           </>
+//         ) : (
+//           <>
+//             <li><a href="/login">Login</a></li>
+//             <li><a href="/register">Register</a></li>
+//           </>
+//         )}
+//       </ul>
+//     </nav>
+//   );
+// };
+
+// export default Navbar;

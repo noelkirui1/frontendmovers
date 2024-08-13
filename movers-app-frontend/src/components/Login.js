@@ -18,12 +18,13 @@ const Login = () => {
     });
     const data = await response.json();
     if (response.ok) {
+        localStorage.setItem('access_token', data.access_token)
       setUser(data);
-      navigate('/admin/dashboard'); // Redirect to quotes or appropriate page
-    } else {
-      alert(data.message);
-    }
-  };
+      navigate('/Customer')
+        } else {
+            alert(data.message);
+        }
+    };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -48,3 +49,5 @@ const Login = () => {
 };
 
 export default Login;
+
+

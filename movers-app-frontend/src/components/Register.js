@@ -55,3 +55,22 @@ const Register = () => {
 };
 
 export default Register;
+// import React from 'react';
+// import { useUser } from '../context/UserContext'; // Correct import
+
+// const Register = () => {
+//   const { isAuthenticated } = useUser();
+
+//   if (isAuthenticated) {
+//     return <p>You are already registered and logged in.</p>;
+//   }
+
+//   return (
+//     <div>
+//       <h1>Register Page</h1>
+//       {/* Registration form */}
+//     </div>
+//   );
+// };
+
+// export default Register;

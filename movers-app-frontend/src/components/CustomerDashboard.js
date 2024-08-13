@@ -1,38 +1,36 @@
-import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../context/UserContext';
+import React from 'react';
+import { Route, Routes, Link, useNavigate } from 'react-router-dom';
+import InventoryForm from './InventoryForm';
+import InventoryList from './InventoryList';
+import BookingForm from './BookingForm';
 
-function CustomerDashboard() {
-    const { setUser } = useContext(UserContext);
-    const navigate = useNavigate();
+const CustomerDashboard = () => {
+  const navigate = useNavigate();
 
-    const handleLogout = async () => {
-        try {
-            // Optional: Call the backend to log out (if needed)
-            await fetch('http://127.0.0.1:5555/logout', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-            });
+  const handleLogout = () => {
+    // removeToken();
+    navigate('/');
+    localStorage.removeItem('access_token')
+  };
 
-            // Clear user information from context
-            setUser(null);
-
-            // Redirect to login page
-            navigate('/login');
-        } catch (error) {
-            console.error('Logout error:', error);
-            alert('An error occurred while logging out. Please try again.');
-        }
-    };
-
-    return (
-        <div>
-            <h1>Mover Dashboard</h1>
-            <p>Welcome to your dashboard, Mover!</p>
-            {/* You can add more components or details here */}
-            <button onClick={handleLogout}>Logout</button>
-        </div>
-    );
-}
+  return (
+    <div>
+      <h1>Customer Dashboard</h1>
+      <nav>
+        <ul>
+          <li><Link to="inventory">View Inventory</Link></li>
+          <li><Link to="add-inventory">Add Inventory</Link></li>
+          <li><Link to="book-move">Book a Move</Link></li>
+        </ul>
+      </nav>
+      <Routes>
+        <Route path="inventory" element={<InventoryList />} />
+        <Route path="add-inventory" element={<InventoryForm />} />
+        <Route path="book-move" element={<BookingForm />} />
+      </Routes>
+      <button onClick={handleLogout}>Logout</button>
+    </div>
+  );
+};
 
 export default CustomerDashboard;
