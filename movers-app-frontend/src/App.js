@@ -6,10 +6,9 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Register from './components/Register';
 import Login from './components/Login';
-import Move from './components/user_dashboard';
-import Inventory from './components/Inventory';
-import Quote from './components/Quote';
-import ProtectedRoute from './components/ProtectedRoute';
+import CustomerDashboard from './components/CustomerDashboard';
+import MoverDashboard from './components/MoverDashBoard';
+import AdminDashboard from './components/AdminDashboard';
 
 const App = () => {
   return (
@@ -20,9 +19,9 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/moves" element={<ProtectedRoute component={Move} roles={[ 'user']} />} />
-          <Route path="/inventory" element={<ProtectedRoute component={Inventory} roles={['user']} />} />
-          <Route path="/quotes" element={<ProtectedRoute component={Quote} roles={['user', 'company']} />} />
+          <Route path="/Admin" element={<AdminDashboard />} />
+          <Route path="/Customer/*" element={<CustomerDashboard />} />
+          <Route path="/Mover/*" element={<MoverDashboard />} />
         </Routes>
       </Router>
     </UserProvider>

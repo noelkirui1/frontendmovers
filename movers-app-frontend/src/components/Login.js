@@ -20,8 +20,9 @@ function Login() {
         });
         const data = await response.json();
     if (response.ok) {
+        localStorage.setItem('access_token', data.access_token)
       setUser(data);
-      navigate('/user_dashboard')
+      navigate('/Customer')
         } else {
             alert(data.message);
         }
@@ -48,3 +49,5 @@ function Login() {
 }
 
 export default Login;
+
+
