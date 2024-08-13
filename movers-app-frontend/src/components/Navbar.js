@@ -28,7 +28,9 @@ const Navbar = () => {
 
   return (
     <nav>
+      <Link to="/">Home</Link>
 
+      {/* Conditional Rendering Based on User Role */}
       {user.id ? (
         <>
           <Link to="/admin/dashboard">AdminDashboard</Link>
