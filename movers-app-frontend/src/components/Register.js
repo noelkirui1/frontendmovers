@@ -1,8 +1,7 @@
-// components/Register.js
 import React, { useState, useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom';
-import './Register.css'
+import './Register.css';
 
 const Register = () => {
   const [formData, setFormData] = useState({ username: '', email: '', password: '', role: 'user' });
@@ -33,10 +32,6 @@ const Register = () => {
     <form onSubmit={handleSubmit}>
       <h2>Register</h2>
       <label>
-        Username:
-        <input type="text" name="username" value={formData.username} onChange={handleChange} required />
-      </label>
-      <label>
         Email:
         <input type="email" name="email" value={formData.email} onChange={handleChange} required />
       </label>
@@ -47,11 +42,14 @@ const Register = () => {
       <label>
         Role:
         <select name="role" value={formData.role} onChange={handleChange}>
-          <option value="user">User</option>
-          <option value="company">Company</option>
+          <option value="customer">Customer</option>
+          <option value="mover">Mover</option>
         </select>
       </label>
       <button type="submit">Register</button>
+      <p className="sign-in-link">
+        Already have an account? <a href="/login">Sign in here</a>.
+      </p>
     </form>
   );
 };

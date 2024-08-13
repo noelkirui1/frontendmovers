@@ -9,7 +9,7 @@ const Quote = () => {
 
   useEffect(() => {
     const fetchQuotes = async () => {
-      const response = await fetch('/quotes');
+      const response = await fetch('http://127.0.0.1:5000/quotes');
       const data = await response.json();
       setQuotes(data);
     };
@@ -23,7 +23,7 @@ const Quote = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch('/quotes', {
+    const response = await fetch('http://127.0.0.1:5000/quotes', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newQuote)
@@ -34,7 +34,7 @@ const Quote = () => {
   };
 
   const handleDelete = async (id) => {
-    const response = await fetch(`/quotes/${id}`, {
+    const response = await fetch(`http://127.0.0.1:5000/quotes/${id}`, {
       method: 'DELETE'
     });
     if (response.ok) {
@@ -47,7 +47,7 @@ const Quote = () => {
   return (
     <div>
       <h2>Quotes</h2>
-      {(user.role === 'admin' || user.role === 'mover') && (
+      {(user.role === 'user' || user.role === 'company') && (
         <form onSubmit={handleSubmit}>
           <label>
             Move ID:
@@ -68,7 +68,7 @@ const Quote = () => {
         {quotes.map(quote => (
           <li key={quote.id}>
             <span>Move ID: {quote.move_id} - Price: {quote.price} - Status: {quote.status}</span>
-            {(user.role === 'admin' || user.role === 'mover') && <button onClick={() => handleDelete(quote.id)}>Delete</button>}
+            {(user.role === 'user' || user.role === 'company') && <button onClick={() => handleDelete(quote.id)}>Delete</button>}
           </li>
         ))}
       </ul>

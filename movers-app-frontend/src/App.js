@@ -4,12 +4,18 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { UserProvider } from './context/UserContext';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
-import Register from './components/Register';
-import Login from './components/Login';
-import Move from './components/user_dashboard';
 import Inventory from './components/Inventory';
 import Quote from './components/Quote';
-import ProtectedRoute from './components/ProtectedRoute';
+import Login from './components/Login';
+import Register from './components/Register';
+import Profile from './components/Profile';
+import Move from './components/Moves';
+import AdminDashboard from './components/AdminDashboard';
+import MoverDashboard from './components/MoverDashboard';
+import CustomerDashboard from './components/CustomerDashboard';
+
+
+
 
 const App = () => {
   return (
@@ -18,11 +24,18 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/inventory" element={<Inventory />} />
+          <Route path="/quotes" element={<Quote />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/moves" element={<ProtectedRoute component={Move} roles={[ 'user']} />} />
-          <Route path="/inventory" element={<ProtectedRoute component={Inventory} roles={['user']} />} />
-          <Route path="/quotes" element={<ProtectedRoute component={Quote} roles={['user', 'company']} />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/user" element={<Move />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/mover/dashboard" element={<MoverDashboard />} />
+          <Route path="/customer/dashboard" element={<CustomerDashboard />} />
+
+
+
         </Routes>
       </Router>
     </UserProvider>
