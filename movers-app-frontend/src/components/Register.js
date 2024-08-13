@@ -14,7 +14,7 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch('http://127.0.0.1:5000/signup', {
+    const response = await fetch('http://127.0.0.1:5555/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
@@ -22,7 +22,7 @@ const Register = () => {
     const data = await response.json();
     if (response.ok) {
       setUser(data);
-      navigate('/Profile');
+      navigate('/Login');
     } else {
       console.error('Registration failed:', data);
     }
@@ -31,10 +31,6 @@ const Register = () => {
   return (
     <form onSubmit={handleSubmit}>
       <h2>Register</h2>
-      <label>
-        Username:
-        <input type="text" name="username" value={formData.username} onChange={handleChange} required />
-      </label>
       <label>
         Email:
         <input type="email" name="email" value={formData.email} onChange={handleChange} required />
@@ -46,8 +42,8 @@ const Register = () => {
       <label>
         Role:
         <select name="role" value={formData.role} onChange={handleChange}>
-          <option value="user">User</option>
-          <option value="company">Company</option>
+          <option value="customer">Customer</option>
+          <option value="mover">Mover</option>
         </select>
       </label>
       <button type="submit">Register</button>

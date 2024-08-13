@@ -10,6 +10,11 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Profile from './components/Profile';
 import Move from './components/Moves';
+import AdminDashboard from './components/AdminDashboard';
+import MoverDashboard from './components/MoverDashboard';
+import CustomerDashboard from './components/CustomerDashboard';
+
+
 
 
 const App = () => {
@@ -25,6 +30,12 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/user" element={<Move />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/mover/dashboard" element={<MoverDashboard />} />
+          <Route path="/customer/dashboard" element={<CustomerDashboard />} />
+
+
+
         </Routes>
       </Router>
     </UserProvider>

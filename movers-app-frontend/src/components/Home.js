@@ -11,7 +11,6 @@ function Home() {
         <div className="hero-text">
           <h1>Welcome to Movers Solution Company</h1>
           <p>Your reliable partner for a stress-free moving experience.</p>
-          <button className="cta-button">Login</button>
         </div>
       </div>
 
@@ -52,8 +51,7 @@ function Home() {
       {/* Call to Action Section */}
       <div className="cta-section">
         <h2>Ready to Move?</h2>
-        <p>Contact us today to schedule your move or get a free quote!</p>
-        <button className="cta-button">Contact Us</button>
+        <p>Login to schedule your next move!</p>
       </div>
     </div>
   );
