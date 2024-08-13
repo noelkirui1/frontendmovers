@@ -16,14 +16,16 @@ const Moves = ({ onMoveCreated }) => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        fetch('http://127.0.0.1:5000/moves')
+       
+        fetch('http://127.0.0.1:5555/moves')
             .then(response => response.json())
             .then(data => setMoves(data))
             .catch(error => console.error('Error fetching moves:', error));
     }, []);
 
     useEffect(() => {
-        fetch('http://127.0.0.1:5000/companies')
+        
+        fetch('http://127.0.0.1:5555/companies')
             .then(response => response.json())
             .then(data => setCompanies(data))
             .catch(error => console.error('Error fetching companies:', error));
@@ -32,6 +34,8 @@ const Moves = ({ onMoveCreated }) => {
     const handleSubmit = () => {
         setLoading(true);
         fetch('http://127.0.0.1:5000/moves', {
+=======
+        fetch('http://127.0.0.1:5555/moves', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newMove),
@@ -41,6 +45,8 @@ const Moves = ({ onMoveCreated }) => {
                 setMoves([...moves, data]);
                 onMoveCreated(data.id); // Notify parent about the move creation
                 return fetch('http://127.0.0.1:5000/quotes', {
+=======
+                return fetch('http://127.0.0.1:5555/quotes', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(newMove),
