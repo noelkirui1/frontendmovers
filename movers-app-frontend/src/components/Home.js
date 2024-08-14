@@ -1,21 +1,12 @@
 import React from 'react';
-import Slider from 'react-slick';
 import './Home.css';
 
 // Import your images
-import image1 from '../images/image.png';
-import image2 from '../images/image2.png';
 import image3 from '../images/image3.png';
 
 const Home = () => {
   // Slider settings
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
+  
 
   return (
     <div className="home-container">
@@ -30,20 +21,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Carousel Section */}
-      <div className="carousel-section">
-        <Slider {...settings}>
-          <div>
-            <img src={image1} alt="Moving services in action" className="carousel-image" />
-          </div>
-          <div>
-            <img src={image2} alt="Packing and moving" className="carousel-image" />
-          </div>
-          <div>
-            <img src={image3} alt="Happy customers after a move" className="carousel-image" />
-          </div>
-        </Slider>
-      </div>
 
       {/* Features Section */}
       <div className="features-section">

@@ -20,7 +20,7 @@ const Login = () => {
     if (response.ok) {
         localStorage.setItem('access_token', data.access_token)
       setUser(data);
-      navigate('/Mover')
+      navigate('/Admin')
         } else {
             alert(data.message);
         }
