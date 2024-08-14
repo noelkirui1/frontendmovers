@@ -1,12 +1,15 @@
 .home-container {
     font-family: Arial, sans-serif;
+    margin-top: 40px;
     
   }
+  
   
   .hero-section {
     position: relative;
     text-align: center;
     color: white;
+    margin-bottom: 0px;
   }
   
   .hero-image {
@@ -20,20 +23,14 @@
     left: 50%;
     transform: translate(-50%, -50%);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5); /* Optional: to improve text readability */
+    padding: 20px;
+    border-radius: 10px;
   }
   
-  .cta-button {
-    background-color: #ff6600;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 20px;
-  }
-  
-  .features-section, .testimonials-section, .cta-section {
+  .features-section, .testimonials-section {
     padding: 40px 20px;
     text-align: center;
   }
@@ -52,5 +49,15 @@
   
   .feature h3, .testimonial p {
     margin: 10px 0;
+  }
+  .carousel-section {
+    margin: 20px auto;
+    max-width: 500px;
+  }
+  
+  .carousel-image {
+    width: 100%;
+    height: auto;
+    display: block;
   }
   

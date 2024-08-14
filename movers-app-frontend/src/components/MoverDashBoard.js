@@ -1,10 +1,8 @@
 import React from 'react';
 import { Route, Routes, Link, useNavigate } from 'react-router-dom';
-import InventoryForm from './InventoryForm';
-import InventoryList from './InventoryList';
-import BookingForm from './BookingForm';
+import MoverBookings from './MoverBookings';
 
-const CustomerDashboard = () => {
+const MoverDashboard = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -16,24 +14,16 @@ const CustomerDashboard = () => {
 
   return (
     <div style={styles.container}>
-      <h1 style={styles.title}>Customer Dashboard</h1>
+      <h1 style={styles.title}>Mover Dashboard</h1>
       <nav style={styles.navbar}>
         <ul style={styles.navList}>
           <li style={styles.navItem}>
-            <Link to="inventory" style={styles.navLink}>View Inventory</Link>
-          </li>
-          <li style={styles.navItem}>
-            <Link to="add-inventory" style={styles.navLink}>Add Inventory</Link>
-          </li>
-          <li style={styles.navItem}>
-            <Link to="book-move" style={styles.navLink}>Book a Move</Link>
+            <Link to="bookings" style={styles.navLink}>View Bookings</Link>
           </li>
         </ul>
       </nav>
       <Routes>
-        <Route path="inventory" element={<InventoryList />} />
-        <Route path="add-inventory" element={<InventoryForm />} />
-        <Route path="book-move" element={<BookingForm />} />
+        <Route path="bookings" element={<MoverBookings />} />
       </Routes>
       <button onClick={handleLogout} style={styles.logoutButton}>Logout</button>
     </div>
@@ -53,11 +43,12 @@ const styles = {
     backgroundColor: '#333',
     padding: '10px',
     borderRadius: '5px',
+    marginBottom: '20px',
   },
   navList: {
     listStyle: 'none',
     display: 'flex',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     padding: 0,
     margin: 0,
   },
@@ -82,4 +73,4 @@ const styles = {
   }
 };
 
-export default CustomerDashboard;
+export default MoverDashboard;
