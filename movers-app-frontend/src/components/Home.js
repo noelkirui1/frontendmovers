@@ -1,18 +1,26 @@
 import React from 'react';
 import './Home.css';
-import image from '../images/image3.png';
 
-function Home() {
+// Import your images
+import image3 from '../images/image3.png';
+
+const Home = () => {
+  // Slider settings
+  
+
   return (
     <div className="home-container">
+      
+
       {/* Hero Section */}
       <div className="hero-section">
-        <img src={image} alt="Descriptive Alt Text" className="hero-image" />
+        <img src={image3} alt="View of our services" className="hero-image" />
         <div className="hero-text">
           <h1>Welcome to Movers Solution Company</h1>
           <p>Your reliable partner for a stress-free moving experience.</p>
         </div>
       </div>
+
 
       {/* Features Section */}
       <div className="features-section">
@@ -48,11 +56,7 @@ function Home() {
         </div>
       </div>
 
-      {/* Call to Action Section */}
-      <div className="cta-section">
-        <h2>Ready to Move?</h2>
-        <p>Login to schedule your next move!</p>
-      </div>
+      
     </div>
   );
 }

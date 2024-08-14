@@ -55,7 +55,7 @@ const SendMessage = ({ token, moveId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/send_message', {
+      const response = await fetch('http://localhost:5555/send_message', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

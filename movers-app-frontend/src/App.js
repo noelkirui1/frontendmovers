@@ -1,4 +1,3 @@
-// App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { UserProvider } from './context/UserContext';
@@ -9,6 +8,10 @@ import Register from './components/Register';
 import AdminDashboard from './components/AdminDashboard';
 import MoverDashboard from './components/MoverDashBoard';
 import CustomerDashboard from './components/CustomerDashboard';
+import './App.css'; // Import the CSS file
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 
 const App = () => {
   return (
