@@ -4,11 +4,11 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { UserProvider } from './context/UserContext';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
-import Register from './components/Register';
 import Login from './components/Login';
-import CustomerDashboard from './components/CustomerDashboard';
-import MoverDashboard from './components/MoverDashBoard';
+import Register from './components/Register';
 import AdminDashboard from './components/AdminDashboard';
+import MoverDashboard from './components/MoverDashBoard';
+import CustomerDashboard from './components/CustomerDashboard';
 
 const App = () => {
   return (
@@ -17,8 +17,9 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/customer/dashboard" element={<CustomerDashboard />} />
           <Route path="/Admin" element={<AdminDashboard />} />
           <Route path="/Customer/*" element={<CustomerDashboard />} />
           <Route path="/Mover/*" element={<MoverDashboard />} />

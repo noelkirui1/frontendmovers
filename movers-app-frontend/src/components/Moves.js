@@ -16,6 +16,7 @@ const Moves = ({ onMoveCreated }) => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+       
         fetch('http://127.0.0.1:5555/moves')
             .then(response => response.json())
             .then(data => setMoves(data))
@@ -23,6 +24,7 @@ const Moves = ({ onMoveCreated }) => {
     }, []);
 
     useEffect(() => {
+        
         fetch('http://127.0.0.1:5555/companies')
             .then(response => response.json())
             .then(data => setCompanies(data))
