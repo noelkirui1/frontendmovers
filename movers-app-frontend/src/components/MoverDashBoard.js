@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes, Link, useNavigate } from 'react-router-dom';
 import MoverBookings from './MoverBookings';
+import './MoverDashboard.css'
 
 const MoverDashboard = () => {
   const navigate = useNavigate();
@@ -20,12 +21,14 @@ const MoverDashboard = () => {
           <li style={styles.navItem}>
             <Link to="bookings" style={styles.navLink}>View Bookings</Link>
           </li>
+
         </ul>
       </nav>
       <Routes>
         <Route path="bookings" element={<MoverBookings />} />
       </Routes>
       <button onClick={handleLogout} style={styles.logoutButton}>Logout</button>
+
     </div>
   );
 };
