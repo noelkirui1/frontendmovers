@@ -28,58 +28,87 @@ const CustomerDashboard = () => {
           <li style={styles.navItem}>
             <Link to="book-move" style={styles.navLink}>Book a Move</Link>
           </li>
+          <li style={styles.navItem}>
+            <button onClick={handleLogout} style={styles.logoutButton}>Logout</button>
+          </li>
         </ul>
       </nav>
-      <Routes>
-        <Route path="inventory" element={<InventoryList />} />
-        <Route path="add-inventory" element={<InventoryForm />} />
-        <Route path="book-move" element={<BookingForm />} />
-      </Routes>
-      <button onClick={handleLogout} style={styles.logoutButton}>Logout</button>
+      <div style={styles.content}>
+        <Routes>
+          <Route path="inventory" element={<InventoryList />} />
+          <Route path="add-inventory" element={<InventoryForm />} />
+          <Route path="book-move" element={<BookingForm />} />
+        </Routes>
+      </div>
     </div>
   );
 };
 
 const styles = {
   container: {
-    padding: '20px',
-    fontFamily: 'Arial, sans-serif',
+    maxWidth: '1100px',
+    margin: '0 auto',
+    marginTop: '60px',
+    padding: '25px',
+    fontFamily: "'Poppins', sans-serif",
+    backgroundColor: '#f4f4f9',
+    borderRadius: '12px',
+    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)',
   },
   title: {
     textAlign: 'center',
-    color: '#333',
+    color: '#2c3e50',
+    marginBottom: '20px',
+    fontSize: '36px',
+    fontWeight: '700',
   },
   navbar: {
     backgroundColor: '#333',
-    padding: '10px',
-    borderRadius: '5px',
+    padding: '15px',
+    borderRadius: '8px',
+    marginBottom: '40px',
+    display: 'flex',
+    justifyContent: 'center',
+    boxShadow: '0 3px 6px rgba(0, 0, 0, 0.1)',
   },
   navList: {
     listStyle: 'none',
     display: 'flex',
-    justifyContent: 'space-around',
+    alignItems: 'center',
+    width: '100%',
     padding: 0,
     margin: 0,
   },
   navItem: {
-    margin: '0 10px',
+    margin: '0 15px',
   },
   navLink: {
     color: '#fff',
     textDecoration: 'none',
-    fontWeight: 'bold',
+    fontWeight: '600',
+    padding: '10px 20px',
+    borderRadius: '25px',
+    backgroundColor: '#e67e22', // Orange background
+    transition: 'background-color 0.3s ease, transform 0.3s ease',
   },
   logoutButton: {
-    display: 'block',
-    margin: '20px auto',
+    marginLeft: 'auto', // Pushes the logout button to the right
     padding: '10px 20px',
-    backgroundColor: '#d9534f',
+    backgroundColor: '#e74c3c',
     color: '#fff',
     border: 'none',
-    borderRadius: '5px',
+    borderRadius: '25px',
     cursor: 'pointer',
-    fontSize: '16px',
-  }
+    fontSize: '18px',
+    fontWeight: '600',
+    transition: 'background-color 0.3s ease, transform 0.3s ease',
+  },
+  content: {
+    padding: '30px',
+    backgroundColor: '#ffffff',
+    borderRadius: '12px',
+    boxShadow: '0 3px 10px rgba(0, 0, 0, 0.05)',
+  },
 };
 
 export default CustomerDashboard;
