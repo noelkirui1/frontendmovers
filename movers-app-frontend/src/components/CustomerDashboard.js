@@ -46,14 +46,16 @@ const CustomerDashboard = () => {
 
 const styles = {
   container: {
-    maxWidth: '1100px',
-    margin: '0 auto',
-    marginTop: '60px',
+    width: '100%', // Increased width
+    height: '80vh', // Adjusted height
+    margin: 'auto', // Centers the container horizontally and vertically
     padding: '25px',
     fontFamily: "'Poppins', sans-serif",
     backgroundColor: '#f4f4f9',
-    borderRadius: '12px',
-    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)',
+    boxSizing: 'border-box', // Ensures padding is included in the height and width
+    display: 'flex', // Use flexbox to center the container
+    alignItems: 'center', // Vertically center the content
+    justifyContent: 'center', // Horizontally center the content
   },
   title: {
     textAlign: 'center',
@@ -108,7 +110,10 @@ const styles = {
     backgroundColor: '#ffffff',
     borderRadius: '12px',
     boxShadow: '0 3px 10px rgba(0, 0, 0, 0.05)',
+    flex: '1', // Allows the content to expand and fill available space
+    overflowY: 'auto', // Adds scroll if content overflows
   },
 };
+
 
 export default CustomerDashboard;
