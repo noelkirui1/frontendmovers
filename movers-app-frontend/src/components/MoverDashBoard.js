@@ -19,15 +19,19 @@ const MoverDashboard = () => {
       <nav style={styles.navbar}>
         <ul style={styles.navList}>
           <li style={styles.navItem}>
-            <Link to="bookings" style={styles.navLink}>View Bookings</Link>
+            <Link to="bookings" style={styles.navLinkOrange}>View Bookings</Link>
+          </li>
+          <li style={styles.navItem}>
+            <button onClick={handleLogout} style={styles.logoutButton}>Logout</button>
           </li>
 
         </ul>
       </nav>
-      <Routes>
-        <Route path="bookings" element={<MoverBookings />} />
-      </Routes>
-      <button onClick={handleLogout} style={styles.logoutButton}>Logout</button>
+      <div style={styles.content}>
+        <Routes>
+          <Route path="bookings" element={<MoverBookings />} />
+        </Routes>
+      </div>
 
     </div>
   );
@@ -35,45 +39,61 @@ const MoverDashboard = () => {
 
 const styles = {
   container: {
-    padding: '20px',
-    fontFamily: 'Arial, sans-serif',
+    maxWidth: '1100px',
+    margin: '0 auto',
+    marginTop: '60px',
+    padding: '25px',
+    fontFamily: "'Poppins', sans-serif",
+    backgroundColor: '#f4f4f9',
+    borderRadius: '12px',
+    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)',
   },
   title: {
     textAlign: 'center',
-    color: '#333',
+    color: '#2c3e50',
+    marginBottom: '20px',
+    fontSize: '36px',
+    fontWeight: '700',
   },
   navbar: {
     backgroundColor: '#333',
-    padding: '10px',
-    borderRadius: '5px',
-    marginBottom: '20px',
+    padding: '15px',
+    borderRadius: '8px',
+    marginBottom: '40px',
+    boxShadow: '0 3px 6px rgba(0, 0, 0, 0.1)',
   },
   navList: {
     listStyle: 'none',
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
     padding: 0,
     margin: 0,
   },
   navItem: {
-    margin: '0 10px',
+    margin: '0 15px',
   },
-  navLink: {
+  navLinkOrange: {
     color: '#fff',
     textDecoration: 'none',
-    fontWeight: 'bold',
+    fontWeight: '600',
+    padding: '10px 20px',
+    borderRadius: '25px',
+    backgroundColor: '#f39c12', // Orange background color
+    transition: 'background-color 0.3s ease, transform 0.3s ease',
   },
   logoutButton: {
-    display: 'block',
-    margin: '20px auto',
     padding: '10px 20px',
-    backgroundColor: '#d9534f',
+    backgroundColor: '#e74c3c',
     color: '#fff',
     border: 'none',
-    borderRadius: '5px',
+    borderRadius: '25px',
     cursor: 'pointer',
-    fontSize: '16px',
-  }
+    fontSize: '18px',
+    fontWeight: '600',
+    transition: 'background-color 0.3s ease, transform 0.3s ease',
+  },
 };
 
 export default MoverDashboard;

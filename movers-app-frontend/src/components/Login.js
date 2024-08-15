@@ -11,23 +11,45 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch('http://127.0.0.1:5555/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    });
-    const data = await response.json();
-    if (response.ok) {
-        localStorage.setItem('access_token', data.access_token)
-      setUser(data);
-      navigate('/Admin')
-        } else {
-            alert(data.message);
+
+    try {
+      const response = await fetch('http://127.0.0.1:5555/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem('access_token', data.access_token);
+        setUser(data);
+
+        // Role-based navigation
+        switch (data.role) {
+          case 'Customer':
+            navigate('/Customer');
+            break;
+          case 'Mover':
+            navigate('/Mover');
+            break;
+          case 'Admin':
+            navigate('/Admin');
+            break;
+          default:
+            navigate('/'); // Default or fallback page
         }
-    };
+      } else {
+        const errorData = await response.json();
+        alert(errorData.message);
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      alert('An error occurred during login. Please try again.');
+    }
+  };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="login-form">
       <h2>Login</h2>
       <input
         type="email"
@@ -35,6 +57,7 @@ const Login = () => {
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Email"
         required
+        className="login-input"
       />
       <input
         type="password"
@@ -42,12 +65,11 @@ const Login = () => {
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"
         required
+        className="login-input"
       />
-      <button type="submit">Login</button>
+      <button type="submit" className="login-button">Login</button>
     </form>
   );
 };
 
 export default Login;
-
-
