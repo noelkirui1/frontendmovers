@@ -3,6 +3,7 @@ import { Route, Routes, Link, useNavigate } from 'react-router-dom';
 import InventoryForm from './InventoryForm';
 import InventoryList from './InventoryList';
 import BookingForm from './BookingForm';
+import './CustomerDashboard.css';
 
 const CustomerDashboard = () => {
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ const CustomerDashboard = () => {
           <Route path="book-move" element={<BookingForm />} />
         </Routes>
       </div>
+
     </div>
   );
 };
