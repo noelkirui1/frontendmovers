@@ -1,7 +1,7 @@
 .login-container {
-  max-width: 400px; /* Reduced max-width */
-  margin: 30px auto; /* Reduced margin */
-  padding: 15px; /* Reduced padding */
+  max-width: 40px; /* Reduced max-width */
+  margin: 50px auto; /* Reduced margin */
+  padding: 20px; /* Reduced padding */
   background-color: white;
   border-radius: 8px; /* Slightly less rounded corners */
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Reduced shadow size */
