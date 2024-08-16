@@ -1,57 +1,32 @@
-import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { UserContext } from '../context/UserContext';
-import './Navbar.css';
-
+// components/Navbar.js
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Navbar.css'; // Import your custom CSS for Navbar
 
 const Navbar = () => {
-  const { user, setUser } = useContext(UserContext);
-  const navigate = useNavigate();
-
-  const handleLogout = async () => {
-    try {
-      // Call the backend logout endpoint
-      const response = await fetch('http://127.0.0.1:5555/logout', { method: 'DELETE' });
-
-      if (response.ok) {
-        // Clear the user context on successful logout
-        setUser({ id: null, username: '', email: '', role: '' });
-        // Navigate back to the home page or any desired page
-        navigate('/');
-      } else {
-        console.error('Failed to log out');
-      }
-    } catch (error) {
-      console.error('Error logging out:', error);
-    }
-  };
-
   return (
-    <nav>
-      <Link to="/">Home</Link>
-
-      {/* Conditional Rendering Based on User Role */}
-      {user.id ? (
-        <>
-          <Link to="/admin/dashboard">AdminDashboard</Link>
-
-          {user.role === 'user' && <Link to="/inventory">Inventory</Link>}
-          {(user.role === 'user' || user.role === 'mover') && (
-            <>
-              <Link to="/quotes">Quotes</Link>
-              <Link to="/moves">Moves</Link>
-            </>
-          )}
-          <button onClick={handleLogout}>Logout</button>
-        </>
-      ) : (
-        <>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link>
-        </>
-      )}
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div className="container">
+        <Link className="navbar-brand" to="/">HOME</Link>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <Link className="nav-link" to="/login">Login</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/register">Register</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/aboutus">About Us</Link>
+            </li>
+          </ul>
+        </div>
+      </div>
     </nav>
   );
-};
+}
 
 export default Navbar;
