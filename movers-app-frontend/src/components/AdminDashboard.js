@@ -1,12 +1,13 @@
-
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { FaUser, FaRegCheckCircle, FaRegTimesCircle, FaTrash, FaArrowLeft } from 'react-icons/fa';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const [customers, setCustomers] = useState([]);
   const [movers, setMovers] = useState([]);
+  const [selectedCustomer, setSelectedCustomer] = useState(null);
+  const [selectedMover, setSelectedMover] = useState(null);
 
   useEffect(() => {
     const fetchCustomersAndMovers = async () => {
@@ -14,12 +15,12 @@ const AdminDashboard = () => {
         const token = localStorage.getItem('access_token');
         const headers = { Authorization: `Bearer ${token}` };
 
-        const customersResponse = await fetch('http://localhost:5555/customers', { headers });
+        const customersResponse = await fetch('http://127.0.0.1:5555/customers', { headers });
         if (!customersResponse.ok) throw new Error('Failed to fetch customers');
         const customersData = await customersResponse.json();
         setCustomers(customersData);
 
-        const moversResponse = await fetch('http://localhost:5555/movers', { headers });
+        const moversResponse = await fetch('http://127.0.0.1:5555/movers', { headers });
         if (!moversResponse.ok) throw new Error('Failed to fetch movers');
         const moversData = await moversResponse.json();
         setMovers(moversData);
@@ -46,7 +47,7 @@ const AdminDashboard = () => {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       };
-      const response = await fetch(`http://localhost:5555/approve_mover/${moverId}`, {
+      const response = await fetch(`http://127.0.0.1:5555/approve_mover/${moverId}`, {
         method: 'POST',
         headers: headers
       });
@@ -68,7 +69,7 @@ const AdminDashboard = () => {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       };
-      const response = await fetch(`http://localhost:5555/reject_mover/${moverId}`, {
+      const response = await fetch(`http://127.0.0.1:5555/reject_mover/${moverId}`, {
         method: 'POST',
         headers: headers
       });
@@ -90,7 +91,7 @@ const AdminDashboard = () => {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       };
-      const response = await fetch(`http://localhost:5555/delete_mover/${moverId}`, {
+      const response = await fetch(`http://127.0.0.1:5555/delete_mover/${moverId}`, {
         method: 'DELETE',
         headers: headers
       });
@@ -101,6 +102,68 @@ const AdminDashboard = () => {
     }
   };
 
+  const approveCustomer = async (customerId) => {
+    try {
+      const token = localStorage.getItem('access_token');
+      const headers = {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      };
+      const response = await fetch(`http://127.0.0.1:5555/approve_customer/${customerId}`, {
+        method: 'POST',
+        headers: headers
+      });
+      if (!response.ok) throw new Error('Failed to approve customer');
+      setCustomers((prevCustomers) =>
+        prevCustomers.map((customer) =>
+          customer.id === customerId ? { ...customer, approved: true } : customer
+        )
+      );
+    } catch (error) {
+      console.error('Error approving customer', error);
+    }
+  };
+
+  const rejectCustomer = async (customerId) => {
+    try {
+      const token = localStorage.getItem('access_token');
+      const headers = {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      };
+      const response = await fetch(`http://127.0.0.1:5555/reject_customer/${customerId}`, {
+        method: 'POST',
+        headers: headers
+      });
+      if (!response.ok) throw new Error('Failed to reject customer');
+      setCustomers((prevCustomers) =>
+        prevCustomers.map((customer) =>
+          customer.id === customerId ? { ...customer, approved: false } : customer
+        )
+      );
+    } catch (error) {
+      console.error('Error rejecting customer', error);
+    }
+  };
+
+  const deleteCustomer = async (customerId) => {
+    try {
+      const token = localStorage.getItem('access_token');
+      const headers = {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      };
+      const response = await fetch(`http://127.0.0.1:5555/delete_customer/${customerId}`, {
+        method: 'DELETE',
+        headers: headers
+      });
+      if (!response.ok) throw new Error('Failed to delete customer');
+      setCustomers((prevCustomers) => prevCustomers.filter((customer) => customer.id !== customerId));
+    } catch (error) {
+      console.error('Error deleting customer', error);
+    }
+  };
+
   return (
     <div style={styles.dashboardContainer}>
       <header style={styles.header}>
@@ -108,35 +171,52 @@ const AdminDashboard = () => {
         <button onClick={handleLogout} style={styles.logoutButton}>Logout</button>
       </header>
       
-      <div style={styles.sectionContainer}>
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Customers</h2>
-          <ul style={styles.list}>
-            {customers.map(customer => (
-              <li key={customer.id} style={styles.listItem}>
-                <span>{customer.email}</span>
-                <span style={styles.status}>Approved: {customer.approved ? 'Yes' : 'No'}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
+      <div style={styles.mainContainer}>
+        <aside style={styles.sidebar}>
+          <button onClick={() => { setSelectedCustomer(null); setSelectedMover(null); }} style={styles.backButton}><FaArrowLeft /> Back</button>
+          {selectedCustomer && (
+            <>
+              <button onClick={() => approveCustomer(selectedCustomer)} style={styles.button}><FaRegCheckCircle /> Approve</button>
+              <button onClick={() => rejectCustomer(selectedCustomer)} style={styles.button}><FaRegTimesCircle /> Reject</button>
+              <button onClick={() => deleteCustomer(selectedCustomer)} style={{ ...styles.button, ...styles.deleteButton }}><FaTrash /> Delete</button>
+            </>
+          )}
+          {selectedMover && (
+            <>
+              <button onClick={() => approveMover(selectedMover)} style={styles.button}><FaRegCheckCircle /> Approve</button>
+              <button onClick={() => rejectMover(selectedMover)} style={styles.button}><FaRegTimesCircle /> Reject</button>
+              <button onClick={() => deleteMover(selectedMover)} style={{ ...styles.button, ...styles.deleteButton }}><FaTrash /> Delete</button>
+            </>
+          )}
+        </aside>
 
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Movers</h2>
-          <ul style={styles.list}>
-            {movers.map(mover => (
-              <li key={mover.id} style={styles.listItem}>
-                <span>{mover.email}</span>
-                <span style={styles.status}>Approved: {mover.approved ? 'Yes' : 'No'}</span>
-                <div style={styles.buttonGroup}>
-                  <button onClick={() => approveMover(mover.id)} style={styles.button}>Approve</button>
-                  <button onClick={() => rejectMover(mover.id)} style={styles.button}>Reject</button>
-                  <button onClick={() => deleteMover(mover.id)} style={{...styles.button, ...styles.deleteButton}}>Delete</button>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </section>
+        <div style={styles.content}>
+          <section style={styles.section}>
+            <h2 style={styles.sectionTitle}><FaUser /> Customers</h2>
+            <ul style={styles.list}>
+              {customers.map(customer => (
+                <li key={customer.id} style={styles.listItem}>
+                  <span>{customer.email}</span>
+                  <span style={styles.status}>Approved: {customer.approved ? 'Yes' : 'No'}</span>
+                  <button onClick={() => setSelectedCustomer(customer.id)} style={styles.selectButton}>Select</button>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section style={styles.section}>
+            <h2 style={styles.sectionTitle}><FaUser /> Movers</h2>
+            <ul style={styles.list}>
+              {movers.map(mover => (
+                <li key={mover.id} style={styles.listItem}>
+                  <span>{mover.email}</span>
+                  <span style={styles.status}>Approved: {mover.approved ? 'Yes' : 'No'}</span>
+                  <button onClick={() => setSelectedMover(mover.id)} style={styles.selectButton}>Select</button>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
       </div>
     </div>
   );
@@ -144,49 +224,94 @@ const AdminDashboard = () => {
 
 const styles = {
   dashboardContainer: {
-    padding: '20px',
+    display: 'flex',
     fontFamily: 'Arial, sans-serif',
-    backgroundColor: '#f5f5f5',
-    borderRadius: '8px',
-    maxWidth: '120000000px',
+    backgroundColor: 'clear',
+    borderRadius: '16px',
+    maxWidth: '1600px',
     margin: '0 auto',
-    marginTop: '80px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    marginTop: '120px',
+    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)',
   },
   header: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: '20px',
+    padding: '50px',  // Increased padding
+    backgroundColor: 'orange',
+    color: '#fff',
+    borderRadius: '16px 16px 0 0',
   },
   title: {
-    fontSize: '24px',
-    color: '#333',
+    fontSize: '42px',  // Increased font size
+    margin: 0,
   },
   logoutButton: {
-    padding: '10px 20px',
-    backgroundColor: '#ff4d4f',
+    padding: '25px 35px',  // Increased padding
+    backgroundColor: '#f44336',
     color: '#fff',
     border: 'none',
-    borderRadius: '5px',
+    borderRadius: '12px',
     cursor: 'pointer',
+    fontSize: '20px',  // Increased font size
   },
-  sectionContainer: {
+  mainContainer: {
     display: 'flex',
-    justifyContent: 'space-between',
-    gap: '20px',
+  },
+  sidebar: {
+    width: '400px',  // Increased width
+    padding: '50px',  // Increased padding
+    backgroundColor: 'clear',
+    borderRight: '1px solid #e0e0e0',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '25px',  // Increased gap between buttons
+  },
+  backButton: {
+    padding: '25px',  // Increased padding
+    backgroundColor: '#ff9800',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '12px',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '20px',  // Increased gap
+    fontSize: '20px',  // Increased font size
+  },
+  button: {
+    padding: '25px',  // Increased padding
+    backgroundColor: '#ff9800',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '12px',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '20px',  // Increased gap
+    fontSize: '20px',  // Increased font size
+  },
+  deleteButton: {
+    backgroundColor: '#f44336',
+  },
+  content: {
+    flex: 1,
+    padding: '50px',  // Increased padding
   },
   section: {
-    flex: 1,
-    backgroundColor: '#fff',
-    padding: '20px',
-    borderRadius: '8px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    backgroundColor: 'orange',
+    padding: '50px',  // Increased padding
+    borderRadius: '16px',
+    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)',
+    marginBottom: '50px',  // Increased margin bottom
   },
   sectionTitle: {
-    fontSize: '20px',
-    marginBottom: '15px',
+    fontSize: '36px',  // Increased font size
+    marginBottom: '30px',  // Increased margin bottom
     color: '#333',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '25px',  // Increased gap
   },
   list: {
     listStyleType: 'none',
@@ -194,30 +319,24 @@ const styles = {
     margin: 0,
   },
   listItem: {
-    padding: '10px 0',
+    padding: '25px 0',  // Increased padding
     borderBottom: '1px solid #e0e0e0',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
   status: {
-    fontSize: '14px',
+    fontSize: '20px',  // Increased font size
     color: '#777',
   },
-  buttonGroup: {
-    display: 'flex',
-    gap: '10px',
-  },
-  button: {
-    padding: '8px 12px',
-    backgroundColor: '#1890ff',
+  selectButton: {
+    padding: '20px 25px',  // Increased padding
+    backgroundColor: '#333',
     color: '#fff',
     border: 'none',
-    borderRadius: '5px',
+    borderRadius: '12px',
     cursor: 'pointer',
-  },
-  deleteButton: {
-    backgroundColor: '#ff4d4f',
+    fontSize: '18px',  // Increased font size
   },
 };
 
