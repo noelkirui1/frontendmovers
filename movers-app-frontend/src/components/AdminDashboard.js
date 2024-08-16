@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaUser, FaRegCheckCircle, FaRegTimesCircle, FaTrash, FaArrowLeft } from 'react-icons/fa';
