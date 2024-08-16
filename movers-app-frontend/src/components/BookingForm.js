@@ -63,85 +63,109 @@ const BookingForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={styles.form}>
-      <input
-        type="text"
-        value={currentLocation}
-        onChange={(e) => setCurrentLocation(e.target.value)}
-        placeholder="Current Location"
-        required
-        style={styles.input}
-      />
-      <input
-        type="text"
-        value={newLocation}
-        onChange={(e) => setNewLocation(e.target.value)}
-        placeholder="New Location"
-        required
-        style={styles.input}
-      />
-      <input
-        type="date"
-        value={movingDate}
-        onChange={(e) => setMovingDate(e.target.value)}
-        required
-        style={styles.input}
-      />
-      <select
-        value={selectedMover}
-        onChange={(e) => setSelectedMover(e.target.value)}
-        required
-        style={styles.select}
-      >
-        <option value="" disabled>Select a mover</option> {/* Placeholder option */}
-        {movers.map((mover) => (
-          <option key={mover.id} value={mover.id}>
-            {mover.name}
-          </option>
-        ))}
-      </select>
-      <button type="submit" style={styles.submitButton}>Book Move</button>
-      {error && <p style={styles.error}>{error}</p>}
-      {success && <p style={styles.success}>{success}</p>}
-    </form>
+    <div style={styles.container}>
+      <h2 style={styles.title}>Book Your Move</h2>
+      <form onSubmit={handleSubmit} style={styles.form}>
+        <label style={styles.label}>
+          Current Location
+          <input
+            type="text"
+            value={currentLocation}
+            onChange={(e) => setCurrentLocation(e.target.value)}
+            placeholder="Enter current location"
+            required
+            style={styles.input}
+          />
+        </label>
+        <label style={styles.label}>
+          New Location
+          <input
+            type="text"
+            value={newLocation}
+            onChange={(e) => setNewLocation(e.target.value)}
+            placeholder="Enter new location"
+            required
+            style={styles.input}
+          />
+        </label>
+        <label style={styles.label}>
+          Moving Date
+          <input
+            type="date"
+            value={movingDate}
+            onChange={(e) => setMovingDate(e.target.value)}
+            required
+            style={styles.input}
+          />
+        </label>
+        <label style={styles.label}>
+          Select a Mover
+          <select
+            value={selectedMover}
+            onChange={(e) => setSelectedMover(e.target.value)}
+            required
+            style={styles.select}
+          >
+            {movers.map((mover) => (
+              <option key={mover.id} value={mover.id}>
+                {mover.name}
+              </option>
+            ))}
+          </select>
+        </label>
+        <button type="submit" style={styles.submitButton}>Book Move</button>
+        {error && <p style={styles.error}>{error}</p>}
+        {success && <p style={styles.success}>{success}</p>}
+      </form>
+    </div>
   );
 };
 
 const styles = {
-  form: {
+  container: {
     maxWidth: '600px',
     margin: '0 auto',
     padding: '20px',
     borderRadius: '8px',
     boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffff',
+  },
+  title: {
+    fontSize: '28px',
+    fontWeight: '600',
+    color: '#2c3e50',
+    marginBottom: '20px',
+  },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  label: {
+    marginBottom: '10px',
+    fontSize: '16px',
+    fontWeight: '500',
+    color: '#34495e',
   },
   input: {
-    display: 'block',
-    width: '100%',
     padding: '10px',
-    marginBottom: '10px',
-    border: '1px solid #ddd',
     borderRadius: '5px',
+    border: '1px solid #ddd',
+    marginBottom: '15px',
     fontSize: '16px',
   },
   select: {
-    display: 'block',
-    width: '100%',
     padding: '10px',
-    marginBottom: '10px',
-    border: '1px solid #ddd',
     borderRadius: '5px',
+    border: '1px solid #ddd',
+    marginBottom: '15px',
     fontSize: '16px',
   },
   submitButton: {
-    display: 'block',
-    width: '100%',
-    padding: '10px',
-    backgroundColor: '#e67e22', // Orange background
+    backgroundColor: 'darkorange', // Green background
     color: '#fff',
     border: 'none',
     borderRadius: '5px',
+    padding: '15px',
     cursor: 'pointer',
     fontSize: '18px',
     fontWeight: '600',
@@ -150,10 +174,12 @@ const styles = {
   error: {
     color: '#e74c3c',
     fontSize: '16px',
+    marginTop: '10px',
   },
   success: {
     color: '#2ecc71',
     fontSize: '16px',
+    marginTop: '10px',
   },
 };
 

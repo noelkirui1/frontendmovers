@@ -1,3 +1,4 @@
+
 /* Container and Typography */
 .home-container {
   font-family: 'Poppins', sans-serif;
@@ -12,14 +13,14 @@
   position: relative;
   text-align: center;
   color: white;
-  margin-bottom: 40px;
+  margin-bottom: -50px;
   overflow: hidden;
 }
 
 .hero-image {
-  width: 100%;
-  height: auto;
-  filter: brightness(70%);
+  width: auto;
+  height: 10;
+  filter: brightness(100%);
 }
 
 .hero-text {
@@ -53,8 +54,9 @@
 
 .features-section h2 {
   font-size: 2rem;
+  font-weight: bold;
   margin-bottom: 40px;
-  color: #2c3e50;
+  color: white;
 }
 
 .features {
@@ -66,22 +68,23 @@
 .feature {
   max-width: 300px;
   margin: 20px;
-  background-color: #fff;
+  background-color: #333;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 3.0s ease, box-shadow 3.0s ease;
 }
 
 .feature h3 {
   margin-bottom: 15px;
+  font-weight: bold;
   font-size: 1.5rem;
-  color: #3498db;
+  color: orange;
 }
 
 .feature p {
   font-size: 1rem;
-  color: #555;
+  color: #fff;
 }
 
 .feature:hover {
@@ -97,8 +100,9 @@
 
 .testimonials-section h2 {
   font-size: 2rem;
+  font-weight: bolder;
   margin-bottom: 40px;
-  color: #2c3e50;
+  color: white;
 }
 
 .testimonials {
@@ -111,20 +115,20 @@
   max-width: 300px;
   margin: 20px;
   padding: 20px;
-  background-color: #f4f4f9;
+  background-color: #333;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .testimonial p {
   font-size: 1rem;
-  color: #555;
+  color: #fff;
   margin: 10px 0;
 }
 
 .testimonial p:last-child {
   font-weight: bold;
-  color: #333;
+  color: orange;
 }
 
 /* Responsive Design */

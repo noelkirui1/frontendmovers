@@ -27,7 +27,7 @@ const Home = () => {
         <h2>Why Choose Us?</h2>
         <div className="features">
           <div className="feature">
-            <h3>Experienced Professionals</h3>
+            <h3>Experienced Movers</h3>
             <p>Our team consists of experienced movers who handle your belongings with care and efficiency.</p>
           </div>
           <div className="feature">
