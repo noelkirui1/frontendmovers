@@ -8,17 +8,14 @@ Movers App is a platform designed to help users find reputable moving companies,
 4. Quote Management: Users can approve or decline quotes provided by moving companies.
 
 # Frontend Setup
-1. Navigate to the frontend directory:
 
 ``
   cd ../movers-app-frontend
             ``
-2. Install dependencies:
 
 ``
 npm install
            ``
-3. Run the React app
 
 ``
 npm start
