@@ -1,32 +1,60 @@
-// components/Navbar.js
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './Navbar.css'; // Import your custom CSS for Navbar
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
+import './Navbar.css';
+
+// Import the logo image
+import logo from '../images/logo.png';
 
 const Navbar = () => {
+  const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:5555/logout', { method: 'DELETE' });
+
+      if (response.ok) {
+        setUser({ id: null, username: '', email: '', role: '' });
+        navigate('/');
+      } else {
+        console.error('Failed to log out');
+      }
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div className="container">
-        <Link className="navbar-brand" to="/">HOME</Link>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/login">Login</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/register">Register</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/aboutus">About Us</Link>
-            </li>
-          </ul>
+    <nav>
+      <div className="nav-content">
+        <Link to="/" className="logo-link">
+          <img src={logo} alt="Company Logo" className="logo" />
+        </Link>
+        <div className="nav-links">
+          <Link to="/">Home</Link>
+          {user.id ? (
+            <>
+              <Link to="/admin/dashboard">AdminDashboard</Link>
+              {user.role === 'user' && <Link to="/inventory">Inventory</Link>}
+              {(user.role === 'user' || user.role === 'mover') && (
+                <>
+                  <Link to="/quotes">Quotes</Link>
+                  <Link to="/moves">Moves</Link>
+                </>
+              )}
+              <button onClick={handleLogout}>Logout</button>
+            </>
+          ) : (
+            <>
+              <Link to="/login">Login</Link>
+              <Link to="/register">Register</Link>
+            </>
+          )}
         </div>
       </div>
     </nav>
   );
-}
+};
 
 export default Navbar;

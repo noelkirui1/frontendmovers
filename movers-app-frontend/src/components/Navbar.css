@@ -1,34 +1,73 @@
-/* Navbar.css */
-.navbar {
-  background-color: #333; /* Dark grey background */
-  padding: 20px 0; /* Increased padding to make the navbar taller */
-  margin-bottom: 0; /* Remove any bottom margin */
+
+/* Navbar styles */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px; /* Adjust height */
+  background-color: #333;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
 }
 
-.navbar-brand {
-  font-size: 1.8rem; /* Big font size for brand */
-  font-weight: bold; /* Bold font */
-  color: #f9f9f9 !important; /* White font color */
+.nav-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px; /* Limit the max-width to keep content centered */
+  margin: 0 auto; /* Center content horizontally */
 }
 
-.navbar-nav {
-  margin-left: auto; /* Align items to the right */
+.logo-link {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
 }
 
-.navbar-nav .nav-item {
-  margin-left: 15px; /* Space out tabs */
+.logo {
+  height: 40px; /* Adjust the logo size */
+  width: auto;
 }
 
-.nav-link {
-  font-size: 1.2rem; /* Big font size for links */
-  font-weight: bold; /* Bold font */
-  color: #f9f9f9 !important; /* White font color */
-  padding: 12px 20px; /* Padding to make links look like tabs, adjusted for the taller navbar */
-  border-radius: 5px; /* Rounded corners for tab effect */
-  transition: background-color 0.3s; /* Smooth background color transition */
+.nav-links {
+  display: flex;
+  align-items: center;
+  flex-grow: 1; /* Allows the links to take up available space */
 }
 
-.nav-link:hover {
-  background-color: #555; /* Slightly lighter grey on hover */
-  color: #fff; /* White text color on hover */
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 20px;
+  font-size: 18px; /* Adjust font size */
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #f1c40f;
+}
+
+.nav-links button {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  margin-left: auto; /* Pushes the button to the right */
+}
+
+.nav-links button:hover {
+  background-color: #c0392b;
+}
+
+body {
+  padding-top: 60px; /* Adjust padding-top according to the height of your navbar */
 }

@@ -2,12 +2,10 @@
 form {
   max-width: 400px;
   margin: 50px auto;
-  padding: 20px;
-  background-color: rgba(249, 249, 249, 0.9); /* Slightly transparent background */
+  padding: 50px;
+  background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  position: relative;
-  z-index: 2;
 }
 
 /* Form heading */
@@ -59,18 +57,11 @@ button[type="submit"]:hover {
   background-color: #218838;
 }
 
-/* Full-page background image */
+/* Optional: Centering form on the page */
 body {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-image: url('../images/image2.png'); 
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+  background-color: #f4f4f4;
 }
